@@ -1,0 +1,31 @@
+div {
+    background-color: blue;
+    width: 200px;
+    height: 200px;
+    color: white;
+}
+
+#main-content {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    gap: 15px;
+    justify-items: center;
+}
+
+/* Tell the first div to span all columns. 
+grid-column says "start at 1, end before 4" aka end at 3 */
+div:nth-child(1) {
+    grid-column: 1 / 4;
+    width: 100%;
+    background-color: red;
+}
+
+/* Grab another div
+    color it green
+    make it span multiple rows
+*/
+div:nth-child(2) {
+    background-color: green;
+    grid-row: 2/4;
+    height: 100%;
+}

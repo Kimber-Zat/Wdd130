@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Search</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="subpage1.html">Class Search</a>
+    </nav>
+
+    <input type="text" id="courseFilter" placeholder="Enter Title or Course Number">
+    <button id="clearFilter">Clear</button>
+
+    <button id="subjectToggle">Toggle Subject Filters</button>
+    <div id="checkboxContainerWrapper">
+        <div id="checkboxContainer" class="hidden"></div>
+        <button id="selectAllSubjects">Hide All</button>
+        <button id="deselectAllSubjects">Hide None</button>
+    </div>
+
+    <div id="courseContainer"></div>
+
+    <script>
+        let courseData = []; // Store data globally for filtering
+
+        window.addEventListener('load', function () {
+            fetch('data3.json')
+                .then(response => response.json())
+                .then(data => {
+                    const entries = Object.entries(data);
+                    courseData = entries;
+                    populateSubjectCheckboxes();
+                    displayCourses();
+                })
+                .catch(error => console.error('Error loading JSON data:', error));
+        });
+
+        function populateSubjectCheckboxes() {
+            const checkboxContainer = document.getElementById('checkboxContainer');
+            const subjects = new Set();
+            courseData.forEach(([_, val]) => {
+                const code = val.Course.split(' ')[0];
+                subjects.add(code);
+            });
+            checkboxContainer.innerHTML = ''; // Reset
+            Array.from(subjects).sort().forEach(code => {
+                const label = document.createElement('label');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = code;
+                checkbox.classList.add('subjectCheckbox');
+                checkbox.addEventListener('change', () => {
+                    displayCourses(document.getElementById('courseFilter').value);
+                });
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(' ' + code));
+                checkboxContainer.appendChild(label);
+            });
+        }
+
+        function getHiddenSubjects() {
+            const checkboxes = document.querySelectorAll('.subjectCheckbox:checked');
+            return Array.from(checkboxes).map(cb => cb.value);
+        }
+
+        function displayCourses(filter = '') {
+            const hiddenSubjects = getHiddenSubjects();
+            const courseContainer = document.getElementById('courseContainer');
+            courseContainer.innerHTML = '';
+
+            const uniqueCourses = new Set();
+            courseData.forEach(item => {
+                const courseCode = item[1].Course;
+                const titleText = item[1].Title;
+                const subjectPrefix = courseCode.split(' ')[0];
+                const courseKey = `${titleText} (${courseCode})`;
+
+                if (
+                    !uniqueCourses.has(courseKey) &&
+                    (filter === '' || courseKey.toLowerCase().includes(filter.toLowerCase())) &&
+                    !hiddenSubjects.includes(subjectPrefix)
+                ) {
+                    uniqueCourses.add(courseKey);
+
+                    const div = document.createElement('div');
+                    const title = document.createElement('span');
+                    title.className = 'class-name';
+                    title.textContent = titleText;
+
+                    const course = document.createElement('span');
+                    course.className = 'course-code';
+                    course.textContent = `(${courseCode})`;
+
+                    const info = document.createElement('button');
+                    info.textContent = 'More Info';
+                    info.addEventListener('click', function () {
+                        localStorage.setItem('index', courseKey);
+                        window.location.href = 'subpage2.html';
+                    });
+
+                    div.appendChild(title);
+                    div.appendChild(course);
+                    div.appendChild(info);
+                    courseContainer.appendChild(div);
+                }
+            });
+        }
+
+        document.getElementById('courseFilter').addEventListener('input', function () {
+            displayCourses(this.value);
+        });
+
+        document.getElementById('clearFilter').addEventListener('click', function () {
+            document.getElementById('courseFilter').value = '';
+            displayCourses('');
+        });
+
+        document.getElementById('selectAllSubjects').addEventListener('click', function () {
+            const checkboxes = document.querySelectorAll('.subjectCheckbox');
+            checkboxes.forEach(cb => cb.checked = true);
+            displayCourses(document.getElementById('courseFilter').value);
+        });
+
+        document.getElementById('deselectAllSubjects').addEventListener('click', function () {
+            const checkboxes = document.querySelectorAll('.subjectCheckbox');
+            checkboxes.forEach(cb => cb.checked = false);
+            displayCourses(document.getElementById('courseFilter').value);
+        });
+
+        document.getElementById('subjectToggle').addEventListener('click', function () {
+            const container = document.getElementById('checkboxContainer');
+            container.classList.toggle('hidden');
+        });
+    </script>
+
+    <footer>
+        <p>Created: 2025 Kimber Zatylny</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+body {
+    background: #FFECD7;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.title-card {
+    background-color: #008DB1;
+    width: 400px;
+    border: 5px solid #004E63;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    border-radius: 15px;
+    grid-column: 2/3;
+}
+
+#name {
+    color: #FFFFFE;
+    font-size: 40px;
+    margin-top: 10%;
+    margin-bottom: 10px;
+}
+
+#sub-title {
+    color: #91E4FB;
+    margin: 0;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 17px;
+    padding-bottom: 10px;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    border: 5px solid #FFFFFE;
+}
+
+#list {
+    color: #FFFFFE;
+    margin-left: 20%;
+    text-align:left;
+    font-size: 16px;
+}
+
+#quote {
+    color: #FFD783;
+    font-family:brush script MT;
+    margin-left: 10%;
+    text-align: left;
+}

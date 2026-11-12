@@ -1,0 +1,373 @@
+/* ====== GLOBAL BASE WITH SITE PLAN COLORS & FONTS ====== */
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600&family=Barlow+Semi+Condensed:wght@300;400;600&display=swap");
+
+:root {
+  --primary-color: #006eb8;
+  --secondary-color: #c2c2cf;
+  --accent1-color: #222226;
+  --accent2-color: #004979;
+
+  --heading-font: "Work Sans", sans-serif;
+  --paragraph-font: "Barlow Semi Condensed", sans-serif;
+
+  --headline-color-on-white: #006eb8;
+  --headline-color-on-color: #f5f5ff;
+  --paragraph-color-on-white: #006eb8;
+  --paragraph-color-on-color: #f5f5ff;
+  --paragraph-background-color: #006eb8;
+  --nav-link-color: #006eb8;
+  --nav-background-color: #c2c2cf;
+  --nav-hover-link-color: #004979;
+  --nav-hover-background-color: #006eb8;
+}
+
+body {
+  font-family: var(--paragraph-font);
+  background-color: #f5f7fa;
+  margin: 0;
+  padding: 0;
+  color: var(--paragraph-color-on-white);
+}
+
+nav {
+  background-color: var(--nav-background-color);
+  padding: 15px;
+  text-align: center;
+}
+
+nav a {
+  color: var(--nav-link-color);
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+nav a:hover {
+  color: var(--nav-hover-link-color);
+  background-color: var(--nav-hover-background-color);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* ====== SEARCH BAR ====== */
+#courseFilter {
+  width: 60%;
+  padding: 10px 15px;
+  margin: 30px auto 10px auto;
+  display: block;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+
+#courseFilter:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+#clearFilter {
+  display: block;
+  margin: 10px auto 10px auto;
+  padding: 8px 16px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#clearFilter:hover {
+  background-color: var(--accent2-color);
+}
+
+/* ====== SUBJECT FILTER TOGGLE ====== */
+#subjectToggle {
+  display: block;
+  margin: 10px auto 5px auto;
+  padding: 6px 12px;
+  background-color: #888;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85em;
+  transition: background-color 0.2s ease;
+}
+
+#subjectToggle:hover {
+  background-color: #666;
+}
+
+/* ====== SUBJECT FILTER CONTAINER ====== */
+#checkboxContainerWrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#checkboxContainer {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px auto 20px auto;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  justify-items: start;
+}
+
+#checkboxContainer.hidden {
+  display: none;
+}
+
+#selectAllSubjects,
+#deselectAllSubjects {
+  display: inline-block;
+  margin: 10px 5px;
+  padding: 8px 14px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease;
+}
+
+#selectAllSubjects:hover,
+#deselectAllSubjects:hover {
+  background-color: var(--accent2-color);
+}
+
+/* ====== COURSE CONTAINER ====== */
+#courseContainer {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ====== COURSE SEARCH CARD STYLE ====== */
+#courseContainer div {
+  background-color: white;
+  padding: 18px 22px;
+  border: 1px solid #ddd;
+  border-left: 6px solid var(--primary-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+#courseContainer div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#courseContainer span {
+  font-size: 1.05em;
+  font-weight: 500;
+  color: var(--accent1-color);
+}
+
+#courseContainer .class-name {
+  font-weight: 600;
+}
+
+#courseContainer .course-code {
+  font-style: italic;
+  color: var(--primary-color);
+}
+
+#courseContainer button {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  font-size: 0.9em;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#courseContainer button:hover {
+  background-color: #27ae60;
+}
+
+/* ====== FOOTER ====== */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #ecf0f1;
+  color: #7f8c8d;
+  font-size: 0.9em;
+  border-top: 1px solid #ddd;
+  margin-top: 40px;
+}
+
+/* ====== MOBILE RESPONSIVE COURSE SEARCH ====== */
+@media (max-width: 768px) {
+  #courseFilter {
+    width: 85%;
+  }
+
+  #courseContainer div {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  #courseContainer button {
+    margin-top: 10px;
+  }
+
+  #checkboxContainer {
+    padding: 10px;
+    max-width: 95%;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+}
+
+#jsonData {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50px 1fr;
+    gap: 20px;
+}
+
+.course-info-header {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    font-size: 1.7em;
+    font-weight: bold;
+    color: var(--accent1-color);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+#sectionsContainer {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    justify-self: center;
+    align-self: start;
+}
+
+#sectionsContainer div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#sectionsContainer.scrollable-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#sectionsContainer span {
+    margin-right: 15px;
+    flex: 1;
+}
+
+#map-container {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    margin-top: 20px;
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.campus-map {
+    width: 331px;
+    height: 549px;
+    display: absolute;
+    margin: 0;
+}
+
+.map-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.map-dot:hover {
+    background-color: #d9534f;
+    transform: scale(1.2);
+    transition: all 0.2s ease;
+}
+
+/* ====== MOBILE RESPONSIVE COURSE INFORMATION ====== */
+@media (max-width: 768px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .course-info-header {
+    font-size: 1.3em;
+    text-align: center;
+  }
+
+  #sectionsContainer {
+    order: 2;
+    width: 100%;
+  }
+
+  #sectionsContainer div {
+    font-size: 1em;
+    padding: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #sectionsContainer.scrollable-list {
+    max-height: 300px;
+  }
+
+  #map-container {
+    order: 1;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .campus-map {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+
+  .map-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .map-dot
+}

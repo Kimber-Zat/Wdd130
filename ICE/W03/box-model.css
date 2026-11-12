@@ -1,0 +1,29 @@
+/* CSS land, CSS syntax */
+
+
+h1 {
+    color: blue;
+    margin-left: 100px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    border-width: 5px;
+    border-style: solid;
+    border-color: pink;
+    padding: 10px;
+}
+
+#header2 {
+    color: red;
+    margin-left: 50px;
+    text-align: left;
+}
+
+.box-demonstration {
+    border-width: 3px;
+    border-style: dashed;
+    border-color: green;
+    padding: 15px;
+}
